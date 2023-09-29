@@ -38,7 +38,7 @@ export default function Home() {
                     <div className="flex flex-wrap justify-center my-[32px]">
                     {
                         data.map((product) => (
-                            <ProductCard product={product}/>
+                            <ProductCard key={product.id} product={product}/>
                         ))
                     }
                     </div>

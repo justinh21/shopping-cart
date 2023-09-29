@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-type Product = {
+export type Product = {
     category: string,
     description: string,
     id: number,

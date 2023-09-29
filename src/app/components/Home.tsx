@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link"
-import ProductCard from "./ProductCard";
+import ProductCard, {Product} from "./ProductCard";
 import useSWR, { Fetcher } from "swr"
 
 export default function Home() {
-    const fetcher = (...args) => fetch (...args).then((res) => res.json());
+    const fetcher = (arg: any, ...args: any) => fetch(arg, ...args).then((res) => res.json());
 
     const { data, error, isLoading } = useSWR("https://fakestoreapi.com/products?limit=6", fetcher)
 
@@ -37,7 +37,7 @@ export default function Home() {
                 ): (
                     <div className="flex flex-wrap justify-center my-[32px]">
                     {
-                        data.map((product) => (
+                        data.map((product: Product) => (
                             <ProductCard key={product.id} product={product}/>
                         ))
                     }

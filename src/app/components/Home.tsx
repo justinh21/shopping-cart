@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link"
+import LoadingFeaturedProducts from "./LoadingFeaturedProduct";
 import ProductCard, {Product} from "./ProductCard";
 import useSWR, { Fetcher } from "swr"
 
 export default function Home() {
     const fetcher = (arg: any, ...args: any) => fetch(arg, ...args).then((res) => res.json());
 
-    const { data, error, isLoading } = useSWR("https://fakestoreapi.com/products?limit=6", fetcher)
+    const { data, error, isLoading } = useSWR("https://fakestoreapi.com/products/category/men%27s%20clothing?limit=6", fetcher)
 
     return (
         <div className="flex flex-col items-stretch">
@@ -33,7 +34,13 @@ export default function Home() {
                     null
                 )}
                 {isLoading ? (
-                    <div>Loading...</div>
+                    // <div>Loading...</div>
+                    <div className="flex flex-wrap justify-center my-[32px]">
+                        <LoadingFeaturedProducts/>
+                        <LoadingFeaturedProducts/>
+                        <LoadingFeaturedProducts/>
+                        <LoadingFeaturedProducts/>
+                    </div>                  
                 ): (
                     <div className="flex flex-wrap justify-center my-[32px]">
                     {
